@@ -14,6 +14,7 @@ public class RegisterBusinessflow {
     public String register(RegisterRequest request) throws ValidateException{
         registerBusiness.validateEmailDuplicate(request.getEmail());
         registerBusiness.validateNameDuplicate(request.getUserName());
+        registerBusiness.validatepasswordIsNull(request.getPassword());
         return registerBusiness.saveRegister(request);
     }
 }
