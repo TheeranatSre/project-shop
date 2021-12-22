@@ -20,12 +20,24 @@ public class RegisterBusiness {
         if (!user.isEmpty()) {
             throw new ValidateException("ที่อยู่ Email นี้ถูกใช้แล้ว กรุณากรอกที่อยู่ Email ใหม่");
         }
+        if (email.equals("")) {
+            throw new ValidateException("กรุณาระบุ email");
+        }
     }
 
-    public void validateNameDuplicate(String name) throws ValidateException{
+    public void validateNameDuplicate(String name) throws ValidateException {
         Optional<UserEntity> user = userRepository.findOneByName(name);
         if (!user.isEmpty()) {
             throw new ValidateException("User Name นี้ถูกใช้แล้ว กรุณากรอกที่อยู่ User Name ใหม่");
+        }
+        if (name.equals("")) {
+            throw new ValidateException("กรุณาระบุ user name");
+        }
+    }
+
+    public void validatepasswordIsNull(String password) throws ValidateException {
+        if (password.equals("")) {
+            throw new ValidateException("กรุณาระบุ password");
         }
     }
 
