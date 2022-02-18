@@ -8,4 +8,5 @@
     <includeAll path="healthcheck/" relativeToChangelogFile="true"/>
     <includeAll path="user/" relativeToChangelogFile="true" />
     <includeAll path="product/" relativeToChangelogFile="true"/>
+    <includeAll path="buyproduct" relativeToChangelogFile="true"/>
 </databaseChangeLog>

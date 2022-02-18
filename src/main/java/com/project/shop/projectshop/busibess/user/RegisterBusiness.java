@@ -4,7 +4,9 @@ import java.util.Optional;
 
 import com.project.shop.projectshop.model.exception.ValidateException;
 import com.project.shop.projectshop.model.user.UserEntity;
+import com.project.shop.projectshop.model.user.node.UserNode;
 import com.project.shop.projectshop.model.user.request.RegisterRequest;
+import com.project.shop.projectshop.repository.user.UserNodeRepository;
 import com.project.shop.projectshop.repository.user.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 public class RegisterBusiness {
 
     private @Autowired UserRepository userRepository;
+    private @Autowired UserNodeRepository userNodeRepository;
 
     public void validateEmailDuplicate(String email) throws ValidateException {
         Optional<UserEntity> user = userRepository.findOneByEmail(email);
@@ -47,7 +50,17 @@ public class RegisterBusiness {
         userRegister.setName(request.getUserName());
         userRegister.setPassword(request.getPassword());
         userRegister.setRole("user");
-        userRepository.save(userRegister);
+        UserEntity userEntity = userRepository.save(userRegister);
+        createNodeUser(userEntity);
         return"สมัครผู้ใช้สำเร็จ";
+    }
+
+    public void createNodeUser(UserEntity userEntity) {
+        UserNode userNode = new UserNode();
+        userNode.setId(userEntity.getId());
+        userNode.setName(userEntity.getName());
+        userNode.setEmail(userEntity.getEmail());
+        userNode.setRole(userEntity.getRole());
+        userNodeRepository.save(userNode);
     }
 }
