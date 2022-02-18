@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="Create Table log Buy" author="Teem Theeranat">
+        <createTable tableName="log_buy_product">
+            <column name="id" autoIncrement="true" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_buy" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="user_sell" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="product_id" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="key" type="text"></column>
+            <column name="unit_amount" type="int"></column>
+            <column name="price" type="int"></column>
+            <column name="is_deleted" type="boolean" defaultValueComputed="false"/>
+            <column name="created_at" type="timestamptz" defaultValueComputed="now()">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="created_by" type="bigint"></column>
+            <column name="updated_at" type="timestamptz" defaultValueComputed="now()">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="updated_by" type="bigint"></column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
